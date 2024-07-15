@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HodlInfo</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>HODLININFO</h1>
+    <div class="filters">
+      <select id="baseUnit">
+        <option value="btc">BTC</option>
+        <option value="usdt">USDT</option>
+        <option value="eth">ETH</option>
+        <option value="eth">XRP</option>
+        <option value="eth">TRX</option>
+        <option value="eth">DASH</option>
+        <option value="eth">ZEC</option>
+        <option value="eth">XEM</option>
+        <option value="eth">IOST</option>
+        <option value="eth">WIN</option>
+        <option value="eth">BTT</option>
+        <option value="eth">WRX</option>
+        <!-- Add more options as needed -->
+      </select>
+
+      <select id="quoteUnit">
+        <option value="inr">INR</option>
+        <!-- Add more options as needed -->
+      </select>
+      <button id="filterBtn">Filter</button>
+    </div>
+
+    <div id="tickerTable">
+      <!-- Table to display ticker data -->
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
