@@ -1,41 +1,53 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #1e1e1e;
-    color: #ffffff;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
-    width: 90%;
-    margin: auto;
-    overflow: hidden;
+  width: 80%;
+  margin: auto;
+  overflow: hidden;
 }
 
-header {
-    text-align: center;
-    padding: 10px 0;
+h1 {
+  text-align: center;
+  margin: 20px 0;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 3em;
-    color: #33ff99;
+.filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
-header p {
-    font-size: 1.2em;
+select, button {
+  margin: 0 10px;
+  padding: 10px;
+  font-size: 16px;
 }
 
-#ticker-data {
-    margin: 20px 0;
+#bestPrice {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.ticker-item {
-    background: #2b2b2b;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-.ticker-item h2 {
-    margin: 0 0 10px;
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: #f2f2f2;
 }

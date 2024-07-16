@@ -1,56 +1,46 @@
-document.getElementById("filterBtn").addEventListener("click", fetchTickers);
-
-document.addEventListener("DOMContentLoaded", () => {
-  fetchTickers();
-});
-
-async function fetchTickers() {
-  const baseUnit = document.getElementById("baseUnit").value;
-  const quoteUnit = document.getElementById("quoteUnit").value;
-
+async function fetchData(baseUnit = "btc", quoteUnit = "inr") {
   try {
     const response = await fetch(
       `/api/tickers?base_unit=${baseUnit}&quote_unit=${quoteUnit}`
     );
-    const tickers = await response.json();
-    displayTickers(tickers);
+    const data = await response.json();
+
+    const buyPrice = parseFloat(data.buy);
+    const sellPrice = parseFloat(data.sell);
+    const lastPrice = parseFloat(data.last);
+    const avgNetPrice = (buyPrice + sellPrice) / 2;
+    const difference = ((lastPrice - avgNetPrice) / avgNetPrice) * 100;
+    const savings = lastPrice - buyPrice;
+
+    document.getElementById("best-price").innerText = `₹ ${buyPrice.toFixed(
+      2
+    )}`;
+    document.getElementById("wazirx-last").innerText = `₹ ${lastPrice.toFixed(
+      2
+    )}`;
+    document.getElementById(
+      "wazirx-buy-sell"
+    ).innerText = `₹ ${buyPrice.toFixed(2)} / ₹ ${sellPrice.toFixed(2)}`;
+    document.getElementById(
+      "wazirx-difference"
+    ).innerText = `${difference.toFixed(2)}%`;
+    document.getElementById("wazirx-savings").innerText = `₹ ${savings.toFixed(
+      2
+    )}`;
   } catch (error) {
-    console.error("Error fetching ticker data:", error);
+    console.error("Error fetching data:", error);
   }
 }
 
-function displayTickers(tickers) {
-  const tickerTable = document.getElementById("tickerTable");
-  let tableContent = `
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Last Traded Price</th>
-          <th>Average Net Price</th>
-          <th>Difference</th>
-          <th>Savings (%)</th>
-        </tr>
-      </thead>
-      <tbody>
-  `;
+document.getElementById("filterBtn").addEventListener("click", () => {
+  const baseUnit = document.getElementById("baseUnit").value;
+  const quoteUnit = document.getElementById("quoteUnit").value;
+  fetchData(baseUnit, quoteUnit);
+});
 
-  tickers.forEach((ticker) => {
-    tableContent += `
-      <tr>
-        <td>${ticker.name}</td>
-        <td>${ticker.last}</td>
-        <td>${ticker.avgNetPrice}</td>
-        <td>${ticker.difference}</td>
-        <td>${ticker.savings}</td>
-      </tr>
-    `;
-  });
-
-  tableContent += `
-      </tbody>
-    </table>
-  `;
-
-  tickerTable.innerHTML = tableContent;
-}
+fetchData();
+setInterval(() => {
+  const baseUnit = document.getElementById("baseUnit").value;
+  const quoteUnit = document.getElementById("quoteUnit").value;
+  fetchData(baseUnit, quoteUnit);
+}, 45000);
