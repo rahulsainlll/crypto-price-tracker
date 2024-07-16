@@ -4,31 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BTC/INR Price Tracker</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="navbar">
+    <div class="navbar-left">
+      <h1>HODLININFO</h1>
+    </div>
+    <div class="navbar-middle">
+      <div class="filters">
+        <select id="baseUnit">
+          <option value="btc">BTC</option>
+          <option value="usdt">USDT</option>
+          <option value="eth">ETH</option>
+          <option value="btc">BTC</option>
+          <option value="usdt">USDT</option>
+          <option value="eth">ETH</option>
+          <option value="btc">BTC</option>
+          <option value="usdt">USDT</option>
+          <option value="eth">ETH</option>
+        </select>
+
+        <select id="quoteUnit">
+          <option value="inr">INR</option>
+        </select>
+        <button id="filterBtn">BUY</button>
+      </div>
+    </div>
+    <div class="navbar-right">
+      <button id="dark-mode-toggle">Dark Mode</button>
+    </div>
+  </div>
+
   <div class="container">
-    <h1>HODLININFO</h1>
+    <h2 class="trade">Best Price to Trade:</h2>
+    <div class="trade-nav">
+      <div id="trade-percent">
+        <h2>0.14 %</h2>
+        <p>5min</p>
+      </div>
 
-    <div class="filters">
-      <select id="baseUnit">
-        <option value="btc">BTC</option>
-        <option value="usdt">USDT</option>
-        <option value="eth">ETH</option>
-      </select>
+      <div id="trade-percent">
+        <h2>0.53 %</h2>
+        <p>5min</p>
+      </div>
 
-      <select id="quoteUnit">
-        <option value="inr">INR</option>
-      </select>
-      <button id="filterBtn">Filter</button>
+      <h1 id="best-price">₹ 0</h1>
+
+      <div id="trade-percent">
+        <h2>9.71 %</h2>
+        <p>5min</p>
+      </div>
+
+      <div id="trade-percent">
+        <h2>10.57 %</h2>
+        <p>5min</p>
+      </div>
     </div>
 
-    <div>
-      <button>Conntect Telegram</button>
-    </div>
-
-    <h2>Best Price to Trade: <span id="best-price">₹ 0</span></h2>
-    <p>Average BTC/INR net price including commission</p>
+    <p id="best-price-para">Average BTC/INR net price including commission</p>
 
     <table>
       <thead>
@@ -47,44 +81,45 @@
           <td>WazirX</td>
           <td id="wazirx-last">₹ 0</td>
           <td id="wazirx-buy-sell">₹ 0 / ₹ 0</td>
-          <td id="wazirx-difference">0%</td>
-          <td id="wazirx-savings">₹ 0</td>
+          <td id="wazirx-difference" class="green-colour">0%</td>
+          <td id="wazirx-savings" class="green-colour">₹ 0</td>
         </tr>
         <tr>
           <td>2</td>
           <td>Bitbns</td>
           <td>₹ 4994605</td>
           <td>₹ 4925166 / ₹ 4994651</td>
-          <td>-9.09%</td>
-          <td>₹ 499394</td>
+          <td class="red-colour">-9.09%</td>
+          <td class="red-colour">₹ 499394</td>
         </tr>
         <tr>
           <td>3</td>
           <td>Colodax</td>
           <td>₹ 5574852</td>
           <td>₹ 5524229 / ₹ 6138033</td>
-          <td>1.47%</td>
-          <td>₹ 80852</td>
+          <td class="green-colour">1.47%</td>
+          <td class="green-colour">₹ 80852</td>
         </tr>
         <tr>
           <td>4</td>
           <td>Zebpay</td>
           <td>₹ 5684399</td>
           <td>₹ 5684499 / ₹ 5684399</td>
-          <td>3.47%</td>
-          <td>₹ 190398</td>
+          <td class="green-colour">3.47%</td>
+          <td class="green-colour">₹ 190398</td>
         </tr>
         <tr>
           <td>5</td>
           <td>CoinDCX</td>
           <td>₹ 5655046</td>
           <td>₹ 5650195 / ₹ 5674000</td>
-          <td>2.93%</td>
-          <td>₹ 161046</td>
+          <td class="green-colour">2.93%</td>
+          <td class="green-colour">₹ 161046</td>
         </tr>
       </tbody>
     </table>
   </div>
+
   <script src="app.js"></script>
 </body>
 </html>

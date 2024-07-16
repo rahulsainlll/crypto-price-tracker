@@ -12,6 +12,7 @@ async function fetchData(baseUnit = "btc", quoteUnit = "inr") {
     const difference = ((lastPrice - avgNetPrice) / avgNetPrice) * 100;
     const savings = lastPrice - buyPrice;
 
+    // update elem with fetched data
     document.getElementById("best-price").innerText = `₹ ${buyPrice.toFixed(
       2
     )}`;
@@ -21,16 +22,32 @@ async function fetchData(baseUnit = "btc", quoteUnit = "inr") {
     document.getElementById(
       "wazirx-buy-sell"
     ).innerText = `₹ ${buyPrice.toFixed(2)} / ₹ ${sellPrice.toFixed(2)}`;
-    document.getElementById(
-      "wazirx-difference"
-    ).innerText = `${difference.toFixed(2)}%`;
-    document.getElementById("wazirx-savings").innerText = `₹ ${savings.toFixed(
-      2
-    )}`;
+
+    // Update difference and savings 
+    const wazirxDifferenceElem = document.getElementById("wazirx-difference");
+    const wazirxSavingsElem = document.getElementById("wazirx-savings");
+    wazirxDifferenceElem.innerText = `${difference.toFixed(2)}%`;
+    wazirxSavingsElem.innerText = `₹ ${savings.toFixed(2)}`;
+
+    // set color
+    if (difference >= 0) {
+      wazirxDifferenceElem.classList.add("green-colour");
+      wazirxSavingsElem.classList.add("green-colour");
+    } else {
+      wazirxDifferenceElem.classList.add("red-colour");
+      wazirxSavingsElem.classList.add("red-colour");
+    }
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
+
+// dark-mode
+const darkModeToggle = document.getElementById("dark-mode-toggle");
+
+darkModeToggle.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
+});
 
 document.getElementById("filterBtn").addEventListener("click", () => {
   const baseUnit = document.getElementById("baseUnit").value;
